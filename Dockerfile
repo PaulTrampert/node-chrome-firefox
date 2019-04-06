@@ -24,4 +24,8 @@ RUN apt-get update \
   && apt-get autoremove --purge -y \
   && apt-get clean
 
+RUN firefox -CreateProfile "headless /moz-headless" -headless
+ADD ./user.js /moz-headless/user.js
+RUN chmod -R a+rwx /moz-headless
+
 ENV DBUS_SESSION_BUS_ADDRESS=/dev/null
